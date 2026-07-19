@@ -8,7 +8,7 @@ Dashlight
 Goal
 ====
 
-   The idea behind it is to make it easy to see the health of your Linux computer
+The idea behind it is to make it easy to see the health of your Linux computer
 at a glance through the command line or a web browser by exposing
 computer state through /proc, /sys, and future additional inputs.
 
