@@ -41,4 +41,4 @@ class Sys:
         failed_disk_count_file.close()
         return int(failed_disk_count)
 
-        def __init__(self) -> None:
+    def __init__(self) -> None:
