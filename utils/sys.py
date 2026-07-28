@@ -1,7 +1,7 @@
 # This Python file is used to parse information from the /sys filesystem to be
 # used by other functions elsewhere.
 # The Sys class is scoped to ONLY READ details from the /sys filesystem.
-# Anything other work must be done outside this class.
+# Any other work must be done outside this class.
 import re
 
 
@@ -23,6 +23,9 @@ class Sys:
     _MODULE_FOLDER = _SYS_ROOT + "module/"
     _POWER_FOLDER = _SYS_ROOT + "power/"
 
+    # Maintain a list of classes that the Linux machine actually has
+    _DEVICES_CLASS_LIST = []
+
     # Regular expressions to locate particular folders.
     _MD_FOLDERS_REGEX = re.compile(r'^md[0-9]*')
 
@@ -31,7 +34,7 @@ class Sys:
 
     # The prameter here is the MD id number (e.g., md100) found
     # in /sys/block/
-    def get_array_degraded_disk_count(md_id: str) -> int:
+    def get_array_degraded_disk_count(self, md_id: str) -> int:
         failed_disk_count_file = open
         (
             self._SYS_ROOT + self._BLOCK_FOLDER + md_id + '/degraded',
@@ -40,5 +43,3 @@ class Sys:
         failed_disk_count = failed_disk_count_file.read()
         failed_disk_count_file.close()
         return int(failed_disk_count)
-
-    def __init__(self) -> None:
