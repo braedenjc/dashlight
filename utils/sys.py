@@ -24,7 +24,7 @@ class Sys:
     _POWER_FOLDER = _SYS_ROOT + "power/"
 
     # Maintain a list of classes that the Linux machine actually has
-    _DEVICES_CLASS_LIST = []
+    _DEVICES_CLASS_LIST: [] = None
 
     # Regular expressions to locate particular folders.
     _MD_FOLDERS_REGEX = re.compile(r'^md[0-9]*')
