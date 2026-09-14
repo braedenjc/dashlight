@@ -13,19 +13,19 @@ at a glance through the command line or a web browser by exposing
 your computers state through /proc, /sys, and future additional inputs.
 
 ## Dependencies
-
 lm-sensors
 
+## Quick Start
+Pending
+## Usage
+Pending
 ## Contributing
-
 ### Clone the repo
-
 ```bash
 git clone https://github.com/braedenjc/dashlight.git
 cd dashlight
 ```
 ### Submit a pull request
-
 If you'd like to help, please fork and open a pull request on the main branch. Thank you!
 
 ## Contact
