@@ -40,8 +40,8 @@ class Hwmon:
         # From the hwmon location, we will collect
         # a list of folders that represent each sensor.
         hwmon_path = Path(self.__hwmon_location__)
-        with hwmon_path as hwmon:
-            print([sensor for sensor in hwmon.iterdir() if sensor.is_dir()])
+
+        print([sensor for sensor in hwmon_path.iterdir() if sensor.is_file()])
         return None
 
     def get_sensors_of_type(self):
