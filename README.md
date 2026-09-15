@@ -29,7 +29,7 @@ If you'd like to help, please fork and open a pull request on the main branch. T
 
 ## TODO
 Currently, the project:
-- Needs to scan a /sys/class/hwmon/ for any hwmon folders, and then parse their contents for each sensor.
+- Needs to scan a /sys/class/hwmon/ for any hwmon folders, and then parse their contents for each sensor. >> IN PROGRESS
 - Create objects for the appropriate type of sensor.
 - Identity proper separation of concerns for behaviors, such as if formatting the output of sensors should be left to the view or the model.
 
