@@ -10,12 +10,13 @@
 TODO: Add a method to detect all of the sensors, and designate a type of sensor
         Implement the Factory programming pattern for use in find_sensors().
 '''
+from pathlib import Path
 
 
 class Hwmon:
 
     __hwmon_name__ = ''
-    __hwmon_location = ''
+    __hwmon_location__ = ''
     # Do we actually need to use a dictionary here?
     __sensors_dict__: {} = None
 
@@ -35,13 +36,18 @@ class Hwmon:
         self.__sensors_dict__ = self.__find_sensors__()
 
     # A helper method to help locate the sensors inside of hwmon.
-    def __find_sensors__():
+    def __find_sensors__(self):
+        # From the hwmon location, we will collect
+        # a list of folders that represent each sensor.
+        hwmon_path = Path(self.__hwmon_location__)
+        with hwmon_path as hwmon:
+            print([sensor for sensor in hwmon.iterdir() if sensor.is_dir()])
         return None
 
-    def get_sensors_of_type():
+    def get_sensors_of_type(self):
         return None
 
-    def get_all_sensors():
+    def get_all_sensors(self):
         return None
 
     def get_sensor_reading(self, name):
