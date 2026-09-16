@@ -4,7 +4,7 @@
 # so we make an object that represents that folder.
 # Inside of each hwmon folder there are one
 # or more file that tells us:
-# - A name for the hwmon
+# - A name for the hwmon hardware inside
 # - sensor readings
 # We need to track those sensors and give easy access to them.
 
@@ -23,7 +23,7 @@ class Hwmon:
     # Do we actually need to use a dictionary here?
     __sensors_dict__: {} = None
 
-    def __init__(self, name, fs_location):
+    def __init__(self, fs_location: Path):
         #  When we init a hwmon object, we are representing a folder that
         # that contains files, which symbolize sensor readings.
         # The process that init should follow is:
@@ -40,9 +40,10 @@ class Hwmon:
     # PRIVATE METHODS:
 
     # A helper method to help locate the sensors inside of hwmon.
+    # This helper method scans the hwmon location for sensors,
+    # their file name, and then puts it into a dictionary
+    # for later use.
     def __find_sensors__(self):
-        # From the hwmon location, we will collect
-        # a list of folders that represent each sensor.
         hwmon_path = Path(self.__hwmon_location__)
 
         fileList = [
@@ -58,7 +59,7 @@ class Hwmon:
 
     def __get_hwmon_name__(self):
         tempName = ''
-        with open(self.__hwmon_location__ + "/" + "name") as hwmonName:
+        with Path.open(self.__hwmon_location__ / "name") as hwmonName:
             tempName = hwmonName.readline().strip()
         return tempName
 
