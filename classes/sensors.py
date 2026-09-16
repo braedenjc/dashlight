@@ -16,13 +16,7 @@ class Sensor:
         self.__sensor_name__ = name
         self.__sensor_fs_location__ = sensor_location
 
-    @property
-    def name(self) -> str:
-        return self.__sensor_name__
-
-    @property
-    def sensor_location(self) -> str:
-        return self.__sensor_fs_location__
+    # PRIVATE METHODS
 
     # This probably needs to be a factory method?
     # There are lots of ways to read a sensor, after all.
@@ -35,6 +29,17 @@ class Sensor:
         with open(self.__sensor_fs_location__, 'r') as sensor:
             reading = sensor.read()
         return reading.strip()  # we remove white space just in case.
+
+    @property
+    def name(self) -> str:
+        return self.__sensor_name__
+
+    @property
+    def sensor_location(self) -> str:
+        return self.__sensor_fs_location__
+
+    def get_raw_sensor_reading(self):
+        return self.__get_sensor_reading__()
 
 
 # A TemperatureSensor is a type of Sensor that exposes temperature
