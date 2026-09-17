@@ -9,11 +9,14 @@
 # We need to track those sensors and give easy access to them.
 
 '''
-TODO: Add a method to detect all of the sensors, and designate a type of sensor
-        Implement the Factory programming pattern for use in find_sensors().
+TODO:
+    - Add a method to detect all of the sensors, and designate a type of sensor
+    - Implement the Factory programming pattern for use in find_sensors().
+    - Load all valid sensor files
 '''
 from pathlib import Path
 from sensors import Sensor
+import os
 
 
 class Hwmon:
@@ -51,7 +54,7 @@ class Hwmon:
             ]
         sensors_dict = dict()
         for sensorFile in fileList:
-            if sensorFile.name != "name":
+            if self.__is_valid_sensor_file__(sensorFile):
                 sensors_dict[sensorFile.name] = Sensor(
                     sensorFile.name, sensorFile.absolute()
                 )
@@ -62,6 +65,15 @@ class Hwmon:
         with Path.open(self.__hwmon_location__ / "name") as hwmonName:
             tempName = hwmonName.readline().strip()
         return tempName
+
+    # Private parser method for determining if a file is a sensor file.
+    def __is_valid_sensor_file__(self, file):
+        is_valid_file_size = os.path.getsize(file) > 0
+        is_not_named_name = file.name != 'name'
+        is_not_named_uevent = file.name != 'uevent'
+        if is_valid_file_size and is_not_named_name and is_not_named_uevent:
+            return True
+        return False
 
     # PUBLIC METHODS
 
